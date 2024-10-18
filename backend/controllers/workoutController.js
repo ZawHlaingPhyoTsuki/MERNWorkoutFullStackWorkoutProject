@@ -1,5 +1,6 @@
-const Workout = require('../models/workoutModel')
-const mongoose = require('mongoose')
+import mongoose from 'mongoose'
+import Workout from '../models/workoutModel.js'
+const { Types } = mongoose
 
 // get all workouts
 const getWorkouts = async (req, res) => {
@@ -12,7 +13,7 @@ const getWorkouts = async (req, res) => {
 const getWorkout = async (req, res) => {
   const { id } = req.params
 
-  if (!mongoose.Types.ObjectId.isValid(id)) {
+  if (!Types.ObjectId.isValid(id)) {
     return res.status(404).json({error: 'No such workout'})
   }
 
@@ -57,7 +58,7 @@ const createWorkout = async (req, res) => {
 const deleteWorkout = async (req, res) => {
   const { id } = req.params
 
-  if (!mongoose.Types.ObjectId.isValid(id)) {
+  if (!Types.ObjectId.isValid(id)) {
     return res.status(400).json({error: 'No such workout'})
   }
 
@@ -74,7 +75,7 @@ const deleteWorkout = async (req, res) => {
 const updateWorkout = async (req, res) => {
   const { id } = req.params
 
-  if (!mongoose.Types.ObjectId.isValid(id)) {
+  if (!Types.ObjectId.isValid(id)) {
     return res.status(400).json({error: 'No such workout'})
   }
 
@@ -89,7 +90,7 @@ const updateWorkout = async (req, res) => {
   res.status(200).json(workout)
 }
 
-module.exports = {
+export default {
   getWorkouts,
   getWorkout,
   createWorkout,

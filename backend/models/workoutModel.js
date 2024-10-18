@@ -1,6 +1,9 @@
-const mongoose = require('mongoose')
+// import { Schema as _Schema, model } from 'mongoose'
+import mongoose from 'mongoose'
 
-const Schema = mongoose.Schema
+const { Schema: _Schema, model } = mongoose
+
+const Schema = _Schema
 
 const workoutSchema = new Schema({
   title: {
@@ -17,4 +20,7 @@ const workoutSchema = new Schema({
   }
 }, { timestamps: true })
 
-module.exports = mongoose.model('Workout', workoutSchema)
+// export default model('Workout', workoutSchema)
+const Workout = model('Workout', workoutSchema)
+
+export default Workout
